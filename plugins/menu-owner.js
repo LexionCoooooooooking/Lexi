@@ -88,11 +88,11 @@ let handler = async (m, { conn }) => {
 ➤.menucrash
 
 ╔════════════════════════════════════╗
-║ ⚡ 𝟥𝟥𝟥 𝔹𝕆𝕋 ⚡
+║ 𖣂
 ╚════════════════════════════════════╝
 `;
 
-    let botName = global.db.data.nomedelbot || " ꙰ 𝟥𝟥𝟥 ꙰ 𝔹𝕆𝕋 ꙰ ";
+    let botName = global.db.data.nomedelbot || " 𖣂 ";
 
     await conn.sendMessage(m.chat, { 
         text: menuText, 
@@ -101,7 +101,7 @@ let handler = async (m, { conn }) => {
             forwardingScore: 1,
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
-                newsletterJid: "120363341274693350@newsletter",
+                newsletterJid: "12036334127@newsletter",
                 serverMessageId: '',
                 newsletterName: botName
             }
