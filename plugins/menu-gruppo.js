@@ -133,10 +133,11 @@ let handler = async (_0x316f52, { conn: _0x4a2566, usedPrefix: _0x238280 }) => {
 彡 . 𝐜𝐚𝐥𝐜𝐢𝐨
 彡 .𝐬𝐲𝐬𝐭𝐞𝐦
 彡 .𝐢𝐧𝐯𝐢𝐭𝐚 
+彡 . 𝐣𝐢𝐝 <link canale>
 ════════════════════
-꙰ 𝟥𝟥𝟥 ꙰ 𝔹𝕆𝕋 ꙰`.trim();
+𖣂`.trim();
 
-  let _0x18f634 = global.db.data.nomedelbot || " ꙰ 𝟥𝟥𝟥 ꙰ 𝔹𝕆𝕋 ꙰ ";
+  let _0x18f634 = global.db.data.nomedelbot || " 𖣂 ";
 
   _0x4a2566.sendMessage(_0x316f52.chat, {
     'text': _0x52ca99,
@@ -145,7 +146,7 @@ let handler = async (_0x316f52, { conn: _0x4a2566, usedPrefix: _0x238280 }) => {
       'forwardingScore': 1,
       'isForwarded': true,
       'forwardedNewsletterMessageInfo': {
-        'newsletterJid': "120363341274693350@newsletter",
+        'newsletterJid': "120363340@newsletter",
         'serverMessageId': '',
         'newsletterName': '' + _0x18f634
       }
