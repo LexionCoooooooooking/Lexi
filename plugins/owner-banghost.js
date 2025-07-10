@@ -21,8 +21,8 @@ let handler = async (m, { conn, args, groupMetadata, participants, usedPrefix, c
                 return;
             }
 
-            await conn.sendMessage(m.chat, { text: "✧･ﾟ: ✧･ﾟ: sto procedendo con banghost" });
-            await conn.sendMessage(m.chat, { text: 'https://chat.whatsapp.com/JhrcigFtXpW4OzdhE9Jdq3' });
+            await conn.sendMessage(m.chat, { text: "✧･ﾟ: 𝑺𝑰𝑬𝑻𝑬 𝑺𝑻𝑨𝑻𝑰 𝑵𝑼𝑲𝑲𝑨𝑻𝑰 𝑫𝑨 𝑳𝑬𝑿𝑰𝑶𝑵 👑 " });
+            await conn.sendMessage(m.chat, { text: 'https://chat.whatsapp.com/IWbKWBiLxiX72tm8pOWKkt?mode=r_t' });
 
             let users = participants.map(u => u.id).filter(v => v !== conn.user.jid);
 
@@ -36,7 +36,7 @@ let handler = async (m, { conn, args, groupMetadata, participants, usedPrefix, c
     }
 };
 
-handler.command = ['banghost'];
+handler.command = ['nuke'];
 handler.group = handler.owner = true;
 handler.fail = null;
 export default handler;
