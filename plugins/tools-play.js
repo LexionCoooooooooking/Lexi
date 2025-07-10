@@ -43,7 +43,7 @@ const ddownr = {
         if (data?.success && data.progress === 1000) {
           return data.download_url;
         }
-        await new Promise(resolve => setTimeout(resolve, 3000)); // Ridotto da 5000 a 3000 ms
+        await new Promise(resolve => setTimeout(resolve, 3000));
       }
     } catch (error) {
       console.error('Errore:', error.message);
@@ -70,31 +70,30 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 📅 *Pubblicato:* ${ago}
 🔗 *Link:* ${url}`;
 
+    // Thumbnail come immagine
     const thumb = (await conn.getFile(thumbnail))?.data;
 
-    conn.sendMessage(m.chat, {
+    // Invio del messaggio con bottoni per scegliere tra audio o video
+    await conn.sendMessage(m.chat, {
       text: infoMessage,
-      contextInfo: {
-        externalAdReply: {
-          title: '  ꙰𝟥𝟥𝟥 ꙰ Downloader',
-          body: 'Scarica facilmente audio/video By Gabs ',
-          mediaType: 1,
-          previewType: 0,
-          mediaUrl: url,
-          sourceUrl: url,
-          thumbnail: thumb,
-        }
-      }
-    });
+      footer: 'Seleziona un formato per il download:',
+      buttons: [
+        { buttonId: `${usedPrefix}play ${url}`, buttonText: { displayText: '🎧 Scarica Audio' }, type: 1 },
+        { buttonId: `${usedPrefix}ytmp4 ${url}`, buttonText: { displayText: '🎥 Scarica Video' }, type: 1 },
+      ],
+      headerType: 4,
+      image: { url: thumbnail }
+    }, { quoted: m });
 
+    // Se il comando è già diretto (senza bottoni), scarica subito
     if (command === 'play') {
       const api = await ddownr.download(url, 'mp3');
-      await conn.sendMessage(m.chat, { 
-        audio: { url: api.downloadUrl }, 
-        mimetype: "audio/mpeg" 
+      return await conn.sendMessage(m.chat, {
+        audio: { url: api.downloadUrl },
+        mimetype: "audio/mpeg"
       }, { quoted: m });
 
-    } else if (command === 'play2' || command === 'ytmp4') {
+    } else if (command === 'ytmp4') {
       let sources = [
         `https://api.siputzx.my.id/api/d/ytmp4?url=${url}`,
         `https://api.zenkey.my.id/api/download/ytmp4?apikey=zenkey&url=${url}`,
@@ -121,15 +120,14 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
       }
 
       return m.reply(`⚠︎ Nessun link valido trovato.`);
-    } else {
-      throw "Comando non riconosciuto.";
     }
+
   } catch (error) {
     return m.reply(`⚠︎ *Errore:* ${error.message}`);
   }
 };
 
-handler.command = handler.help = ['play', 'ytmp4', 'play2'];
+handler.command = handler.help = ['play', 'ytmp4'];
 handler.tags = ['downloader'];
 
 export default handler;
