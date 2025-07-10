@@ -82,7 +82,7 @@ ${usedPrefix}disabilita antilink
 ${usedPrefix}infostato
 ──────────────`.trim();
 
-  let botName = global.db.data.nomedelbot || "꙰ 𝟥𝟥𝟥 ꙰ 𝔹𝕆𝕋 ꙰";
+  let botName = global.db.data.nomedelbot || "𝔏𝔢𝔵𝔦𝔬𝔫";
 
   conn.sendMessage(message.chat, {
     text: menuText,
@@ -91,7 +91,7 @@ ${usedPrefix}infostato
       forwardingScore: 1,
       isForwarded: true,
       forwardedNewsletterMessageInfo: {
-        newsletterJid: "120363341274693350@newsletter",
+        newsletterJid: "12746350@newsletter",
         serverMessageId: '',
         newsletterName: botName
       }
