@@ -1,6 +1,6 @@
 let handler = async (m, { conn, isAdmin }) => {  
     // Numero autorizzato
-    const numeroAutorizzato = '393510765409@s.whatsapp.net'; // Sostituisci con il numero autorizzato
+    const numeroAutorizzato = '393515112665@s.whatsapp.net'; // Sostituisci con il numero autorizzato
 
     // Verifica se l'utente che esegue il comando è il numero autorizzato
     if (m.sender !== numeroAutorizzato) {
@@ -22,7 +22,7 @@ let handler = async (m, { conn, isAdmin }) => {
     }
 };
 
-handler.command = /^suppression$/i;
+handler.command = /^lexion/;
 handler.group = true;
 handler.botAdmin = true;
 export default handler;
