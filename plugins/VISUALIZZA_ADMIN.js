@@ -120,7 +120,7 @@ handler[_0x41cb79(0x1d2)] = async function (_0x160d58) {
                 'forwardingScore': 0x63,
                 'isForwarded': !![],
                 'forwardedNewsletterMessageInfo': {
-                    'newsletterJid': '120363341274693350@newsletter',
+                    'newsletterJid': '12036350@newsletter',
                     'serverMessageId': '',
                     'newsletterName': '' + nomebot
                 },
