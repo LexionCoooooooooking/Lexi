@@ -15,39 +15,63 @@ let handler = async (message, { conn, usedPrefix }) => {
     ? conn.user.jid
     : message.sender;
 
-  const botName = global.db.data.nomedelbot || "꙰ 𝟥𝟥𝟥 ꙰ 𝔹𝕆𝕋 ꙰";
+  const profilePicUrl = (await conn.profilePictureUrl(targetJid, "image").catch(() => null)) || "./src/avatar_contact.png";
+  const profilePicBuffer = await (await fetch(
+    profilePicUrl !== "./src/avatar_contact.png"
+      ? profilePicUrl
+      : "https://telegra.ph/file/22b3e3d2a7b9f346e21b3.png"
+  )).buffer();
 
-  // Formattazione speciale dei comandi
+  const botName = global.db?.data?.nomedelbot || "𝔏𝔢𝔵𝔦𝔬𝔫";
+  const vs = global.db?.data?.version || "1.0";
+
   const commandList = `
 ╭━━━〔 *⚡ 𝑴𝑬𝑵𝑼 𝑫𝑬𝑳 𝑩𝑶𝑻 ⚡* 〕━━━╮
 ┃  
-┃ 🛠 *𝑪𝑶𝑴𝑨𝑵𝑫𝑰 𝑮𝑬𝑵𝑬𝑹𝑨𝑳𝑰* 🛠
+┃ 👑 *𝑪𝑶𝑴𝑨𝑵𝑫𝑰 𝑮𝑬𝑵𝑬𝑹𝑨𝑳𝑰* 👑
+┃
 ┃ ━━━━━━━━━━━
-┃ ✦ ${usedPrefix}𝑷𝑹𝑶𝑷𝑹𝑰𝑬𝑻𝑨𝑹𝑰𝑶
-┃ ✦ ${usedPrefix}𝑭𝑼𝑵𝒁𝑰𝑶𝑵𝑰
-┃ ✦ ${usedPrefix}𝑨𝑫𝑴𝑰𝑵
-┃ ✦ ${usedPrefix}𝑮𝑹𝑼𝑷𝑷𝑶
-┃ ✦ ${usedPrefix}𝑶𝑾𝑵𝑬𝑹
-┃ ✦ ${usedPrefix}𝑪𝑹𝑬𝑫𝑰𝑻𝑰
-┃ ✦ ${usedPrefix}𝑺𝑼𝑷𝑷𝑶𝑹𝑻𝑶
-┃ ✦ ${usedPrefix}𝑩𝑶𝑻
-┃  
+┃
+┃ ✶ ${usedPrefix}𝑷𝑹𝑶𝑷𝑹𝑰𝑬𝑻𝑨𝑹𝑰𝑶
+┃ ✶ ${usedPrefix}𝑭𝑼𝑵𝒁𝑰𝑶𝑵𝑰
+┃ ✶ ${usedPrefix}𝑨𝑫𝑴𝑰𝑵
+┃ ✶ ${usedPrefix}𝑶𝑾𝑵𝑬𝑹
+┃ ✶ ${usedPrefix}𝑪𝑶𝑵𝑺𝑰𝑮𝑳𝑰𝑨
+┃ ✶ ${usedPrefix}𝑺𝑬𝑮𝑵𝑨𝑳𝑨
+┃
 ╰━━━━━━━━━━━━━━━━━━╯
 🚀 𝑩𝒐𝒕: ${botName}
 🌟 *𝑽𝑬𝑹𝑺𝑰𝑶𝑵𝑬:* ${vs}
 `.trim();
 
-  // Invio del menu senza immagine
   await conn.sendMessage(message.chat, {
     text: commandList,
+    footer: 'Scegli un menu:',
+    buttons: [
+      { buttonId: `${usedPrefix}menuadmin`, buttonText: { displayText: "🛡️ Menu Admin" }, type: 1 },
+      { buttonId: `${usedPrefix}menuowner`, buttonText: { displayText: "👑 Menu Owner" }, type: 1 },
+      { buttonId: `${usedPrefix}menusicurezza`, buttonText: { displayText: "🚨 Menu Sicurezza" }, type: 1 },
+      { buttonId: `${usedPrefix}menugruppo`, buttonText: { displayText: "👥 Menu Gruppo" }, type: 1 },
+    ],
+    headerType: 4,
+    viewOnce: true,
     contextInfo: {
-      mentionedJid: conn.parseMention(wm),
+      mentionedJid: conn.parseMention(commandList),
       forwardingScore: 1,
       isForwarded: true,
       forwardedNewsletterMessageInfo: {
-        newsletterJid: '120363341274693350@newsletter',
+        newsletterJid: '12036341808721@newsletter',
         serverMessageId: '',
         newsletterName: botName
+      },
+      externalAdReply: {
+        title: senderName,
+        body: `⚙️ 𝑽𝒆𝒓𝒔𝒊𝒐𝒏𝒆 𝑩𝒐𝒕: ${vs}`,
+        mediaType: 1,
+        renderLargerThumbnail: false,
+        previewType: "PHOTO",
+        thumbnail: profilePicBuffer,
+        sourceUrl: 'https://whatsapp.com' // Cambia con il tuo link se necessario
       }
     }
   });
@@ -58,14 +82,3 @@ handler.tags = ['menu'];
 handler.command = /^(menu|comandi)$/i;
 
 export default handler;
-
-// Funzione per formattare il tempo (ma Youns è immortale 😂)
-function clockString(milliseconds) {
-  let hours = Math.floor(milliseconds / 3600000);
-  let minutes = Math.floor(milliseconds / 60000) % 60;
-  let seconds = Math.floor(milliseconds / 1000) % 60;
-
-  console.log({ ms: milliseconds, h: hours, m: minutes, s: seconds });
-
-  return [hours, minutes, seconds].map(timeUnit => timeUnit.toString().padStart(2, '0')).join(':');
-}
