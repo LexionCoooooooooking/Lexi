@@ -14,7 +14,7 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
             throw `𝐒𝐞𝐢 𝐭𝐫𝐨𝐩𝐩𝐨 𝐩𝐨𝐯𝐞𝐫𝐨 𝐩𝐞𝐫 𝐢 𝐠𝐢𝐨𝐜𝐡𝐢 𝐝'𝐚𝐳𝐳𝐚𝐫𝐝𝐨.\n𝐓𝐢 𝐦𝐚𝐧𝐜𝐚𝐧𝐨 ${scommessa - users.money}€.`;
 
         // Simboli della slot machine
-        let emojis = ["💎", "💰", "👑"];
+        let emojis = ["🪷", "👄", "🌴"];
         let x = [], y = [], z = [];
         
         // Generazione casuale delle linee
