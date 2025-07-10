@@ -1,73 +1,67 @@
-import { performance } from 'perf_hooks';
+import axios from "axios";
 
-let handler = async (m, { conn, text }) => {
-    let start = `⏳ *Inizio processo di DOX...*`;
-    await m.reply(start);
+const API_KEY = "65137657dba81669f2b1ebc2a2ff3dc3"; 
 
-    // Progressione del "boost" con simulazione
-    await m.reply(`🔍 *Progresso:* ${pickRandom(['10', '20', '30', '40', '50'])}%`);
-    await m.reply(`🔍 *Progresso:* ${pickRandom(['60', '70', '80'])}%`);
-    await m.reply(`🔍 *Progresso:* ${pickRandom(['90', '100'])}%`);
+async function getNumberInfo(phoneNumber) {
+    const url = `http://apilayer.net/api/validate?access_key=${API_KEY}&number=${phoneNumber}`;
 
-    // Simulazione di velocità
-    let old = performance.now();
-    let neww = performance.now();
-    let speed = `${(neww - old).toFixed(2)} ms`;
+    try {
+        const response = await axios.get(url);
+        const data = response.data;
 
-    // Risultati finali
-    let doxeo = `
-*✔️DOX COMPLETATO CON SUCCESSO*
-━━━━━━━━━━━━━━━━━━━━━
-👤 *Persona doxata:* ${text}
-🌐 *Indirizzo IP:* ${pickRandom([
-        '92.28.211.234',
-        '140.216.58.100',
-        '80.139.134.15',
-        '88.53.127.8',
-        '231.87.85.223',
-    ])}
-🔐 *IPV6:* ${pickRandom([
-        '4e4d:1176:3285:02bb:40c7:bd44:4094:4f37',
-        '806a:9b5d:c5b3:e852:b490:0492:bef9:085b',
-    ])}
-📶 *ISP:* ${pickRandom([
-        'Telecom Italia',
-        'Vodafone',
-        'WINDTRE',
-        'Fastweb',
-        'Tiscali',
-    ])}
-📡 *DNS:* ${pickRandom(['8.8.8.8', '8.8.4.4', '1.1.1.1'])}
-🖥️ *MAC Address:* ${pickRandom([
-        '4A:93:23:18:BA:7F',
-        'F0:1A:30:3B:EA:D1',
-        'AD:7E:2A:FB:81:B3',
-    ])}
-📟 *Router Vendor:* ${pickRandom([
-        'ERICCSON',
-        'Alcatel',
-        'Asus',
-        'Cisco',
-        'Huawei',
-        'Samsung',
-        'IPhone',
-        'Motorola',
-        'Oppo',
-        'Redmi',
-    ])}
-━━━━━━━━━━━━━━━━━━━━━
+        if (data.valid) {
+            return `
+💎═══════•⊰✦⊱•═══════👻
 
-🕒 *Tempo di esecuzione:* ${speed}
-`.trim();
+*Ꮮ𝐄𝐗𝚰Ꮻ𝐍 DOXXA*
 
-    m.reply(doxeo, null, { mentions: conn.parseMention(doxeo) });
+📞 INFO NUMERO
+─────────────────────────
+➤ Numero originale: ${data.number}
+➤ Formato locale: ${data.local_format}
+➤ Formato internazionale: ${data.international_format}
+
+🌍 PAESE
+➤ Nome: ${data.country_name}
+➤ Codice: ${data.country_code}
+➤ Prefisso: +${data.country_prefix}
+
+📍 LOCALIZZAZIONE
+➤ Regione/Area: ${data.location || "Non disponibile"}
+
+📡 OPERATORE
+➤ Carrier: ${data.carrier || "Non disponibile"}
+➤ Tipo di linea: ${data.line_type || "Non specificato"}
+💎═══════•⊰✦⊱•═══════👻
+`;
+        } else {
+            return "❌ Numero non valido o non trovato.";
+        }
+    } catch (error) {
+        return `*_❌ Errore nella richiesta: ${error.message}_*`;
+    }
+}
+
+const handler = async (m, { text, participants }) => {
+    if (!text) {
+        return m.reply("📌 Esempio d'uso: .dox +393331234567");
+    }
+
+    const sender = m.sender;
+    const isGroup = !!m.isGroup;
+    const admins = isGroup ? participants.filter(p => p.admin).map(p => p.id) : [];
+
+    
+    if (!admins.includes(sender) && sender !== text.replace(/\D/g, "")) {
+        return m.reply("🚫 Accesso negato. Solo admin o numero target.");
+    }
+
+    const result = await getNumberInfo(text);
+    m.reply(result);
 };
 
-handler.help = ['doxear <nome> | <@tag>'];
-handler.tags = ['fun'];
-handler.command = /^dox$/i;
-export default handler;
+handler.help = ["dox"];
+handler.tags = ["tools"];
+handler.command = ["dox"];
 
-function pickRandom(list) {
-    return list[Math.floor(Math.random() * list.length)];
-}
+export default handler;
