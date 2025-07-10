@@ -14,7 +14,7 @@ handler.all = async function (m) {
   let chat = global.db.data.chats[m.chat]
   let name = conn.getName(m.sender)
 
-  if (/^@+46737807114|@46737807114|@+393762030481|@393762030481$/i.test(m.text)) {
+  if (/^@+393515112665|@+27628765191|@+393762030481|@393762030481$/i.test(m.text)) {
     if (m.sender === conn.user.jid) return
 
     const image = fs.readFileSync('./icone/instagram.png') // Assicurati che il file esista nella cartella "icone"
@@ -31,7 +31,7 @@ handler.all = async function (m) {
       participant: "0@s.whatsapp.net"
     }
 
-    conn.reply(m.chat, `🔗 *Instagram:* https://instagram.com/insta_gqbri\n\n📩 *Se volete il bot, fate .supporto*`, prova, m)
+    conn.reply(m.chat, `Cazzo Tagghi L Owner 😡`, prova, m)
   }
   return !0
 }
