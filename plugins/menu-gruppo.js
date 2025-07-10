@@ -1,62 +1,60 @@
-import 'os';
-import 'util';
-import 'human-readable';
-import '@whiskeysockets/baileys';
-import 'fs';
-import 'perf_hooks';
+import fs from 'fs';
+import fetch from 'node-fetch'; // Assicurati che `node-fetch` sia installato
+import { performance } from 'perf_hooks';
+import { downloadContentFromMessage } from '@whiskeysockets/baileys';
 
 let cooldown = new Map();
 
-let handler = async (_0x316f52, { conn: _0x4a2566, usedPrefix: _0x238280 }) => {
-  let sender = _0x316f52.sender;
-  let now = Date.now();
-  let cooldownTime = 5000; // Tempo di attesa di 5 secondi
+let handler = async (m, { conn, usedPrefix }) => {
+  const sender = m.sender;
+  const now = Date.now();
+  const cooldownTime = 5000;
 
   if (cooldown.has(sender)) {
-    let lastUsed = cooldown.get(sender);
-    let timePassed = now - lastUsed;
+    const lastUsed = cooldown.get(sender);
+    const timePassed = now - lastUsed;
 
     if (timePassed < cooldownTime) {
-      let timeLeft = (cooldownTime - timePassed) / 1000;
-      return _0x4a2566.sendMessage(_0x316f52.chat, { text: `⏳ Attendi ${timeLeft.toFixed(1)} secondi prima di usare di nuovo il comando.` }, { quoted: _0x316f52 });
+      const timeLeft = ((cooldownTime - timePassed) / 1000).toFixed(1);
+      return conn.sendMessage(m.chat, {
+        text: `⏳ Attendi ${timeLeft} secondi prima di usare di nuovo il comando.`
+      }, { quoted: m });
     }
   }
 
   cooldown.set(sender, now);
 
-  let _0x12abbd = {
-    'key': {
-      'participants': "0@s.whatsapp.net",
-      'fromMe': false,
-      'id': 'Halo'
+  const thumbnailUrl = "https://qu.ax/cSqEs.jpg";
+  const thumbnailBuffer = await (await fetch(thumbnailUrl)).buffer();
+
+  const fakeContact = {
+    key: {
+      participants: "0@s.whatsapp.net",
+      fromMe: false,
+      id: 'Halo'
     },
-    'message': {
-      'locationMessage': {
-        'name': "𝑴𝑬𝑵𝑼 𝑮𝑹𝑼𝑷𝑷𝑶",
-        'jpegThumbnail': await (await fetch("https://qu.ax/cSqEs.jpg")).buffer(),
-        'vcard': `
-          BEGIN:VCARD
-          VERSION:3.0
-          N:;Unlimited;;;
-          FN:Unlimited
-          ORG:Unlimited
-          TITLE:
-          item1.TEL;waid=19709001746:+1 (970) 900-1746
-          item1.X-ABLabel:Unlimited
-          X-WA-BIZ-DESCRIPTION:ofc
-          X-WA-BIZ-NAME:Unlimited
-          END:VCARD
-        `.trim()
+    message: {
+      locationMessage: {
+        name: "𝑴𝑬𝑵𝑼 𝑮𝑹𝑼𝑷𝑷𝑶",
+        jpegThumbnail: thumbnailBuffer,
+        vcard: `
+BEGIN:VCARD
+VERSION:3.0
+N:;Unlimited;;;
+FN:Unlimited
+ORG:Unlimited
+item1.TEL;waid=19709001746:+1 (970) 900-1746
+item1.X-ABLabel:Unlimited
+END:VCARD`.trim()
       }
     },
-    'participant': "0@s.whatsapp.net"
+    participant: "0@s.whatsapp.net"
   };
 
-  let _0x52ca99 = `
+  const menuText = `
 ════════╗
 ║ ✨ *𝐆𝐫𝐮𝐩𝐩𝐨 𝐌𝐞𝐧𝐮* ✨
 ╚══════════════════════════════════════╝
-
 彡 . 𝐚𝐛𝐛𝐫𝐚𝐜𝐜𝐢𝐚 @  
 彡 . 𝐥𝐞𝐜𝐜𝐨/𝐚 @  
 彡 . 𝐦𝐨𝐫𝐝𝐢 @  
@@ -131,47 +129,58 @@ let handler = async (_0x316f52, { conn: _0x4a2566, usedPrefix: _0x238280 }) => {
 彡 . 𝐫𝐢𝐜𝐞𝐭𝐭𝐚  
 彡 . 𝐰𝐢𝐤𝐢𝐩𝐞𝐝𝐢𝐚  
 彡 . 𝐜𝐚𝐥𝐜𝐢𝐨
-彡 .𝐬𝐲𝐬𝐭𝐞𝐦
-彡 .𝐢𝐧𝐯𝐢𝐭𝐚 
+彡 . 𝐬𝐲𝐬𝐭𝐞𝐦
+彡 . 𝐢𝐧𝐯𝐢𝐭𝐚 
 彡 . 𝐣𝐢𝐝 <link canale>
 ════════════════════
-𖣂`.trim();
+𝔏𝔢𝔵𝔦𝔬𝔫 𖣂
+════════════════════
+`.trim();
 
-  let _0x18f634 = global.db.data.nomedelbot || " 𖣂 ";
+  const botName = global.db?.data?.nomedelbot || "𝔏𝔢𝔵𝔦𝔬𝔫";
 
-  _0x4a2566.sendMessage(_0x316f52.chat, {
-    'text': _0x52ca99,
-    'contextInfo': {
-      'mentionedJid': _0x4a2566.parseMention(wm),
-      'forwardingScore': 1,
-      'isForwarded': true,
-      'forwardedNewsletterMessageInfo': {
-        'newsletterJid': "120363340@newsletter",
-        'serverMessageId': '',
-        'newsletterName': '' + _0x18f634
+  await conn.sendMessage(m.chat, {
+    text: menuText,
+    contextInfo: {
+      mentionedJid: [], // inserisci qui se vuoi taggare qualcuno
+      forwardingScore: 1,
+      isForwarded: true,
+      forwardedNewsletterMessageInfo: {
+        newsletterJid: "12036341808@newsletter",
+        serverMessageId: '',
+        newsletterName: botName
       }
     }
-  }, { 'quoted': _0x12abbd });
+  }, { quoted: fakeContact });
+
+  
+  
+  await conn.sendMessage(m.chat, {
+    video: { url: videoPath },
+    caption: menuText,
+    footer: 'Scegli un menu:',
+    buttons: [
+      { buttonId: `${usedPrefix}menu`, buttonText: { displayText: "🏠 Menu Principale" }, type: 1 },
+      { buttonId: `${usedPrefix}menuadmin`, buttonText: { displayText: "🛡️ Menu Admin" }, type: 1 },
+      { buttonId: `${usedPrefix}menuowner`, buttonText: { displayText: "👑 Menu Owner" }, type: 1 },
+      { buttonId: `${usedPrefix}menusicurezza`, buttonText: { displayText: "🚨 Menu Funzioni " }, type: 1 },
+    ],
+    viewOnce: true,
+    headerType: 4
+  });
+  */
 };
 
-handler.help = ["menu"];
+handler.help = ['menugruppo', 'menu', 'menuadmin', 'menuowner', 'menufunzioni'];
 handler.tags = ['menu'];
-handler.command = /^(menugruppo|gruppo)$/i;
+handler.command = /^(gruppo|menugruppo|menu|menuadmin|menuowner|menufunzioni)$/i;
+
 export default handler;
 
-function clockString(_0x5376bb) {
-  let _0x14ce08 = Math.floor(_0x5376bb / 3600000);
-  let _0x11e6bc = Math.floor(_0x5376bb / 60000) % 60;
-  let _0xaff805 = Math.floor(_0x5376bb / 1000) % 60;
-
-  console.log({
-    'ms': _0x5376bb,
-    'h': _0x14ce08,
-    'm': _0x11e6bc,
-    's': _0xaff805
-  });
-
-  return [_0x14ce08, _0x11e6bc, _0xaff805]
-    .map(_0x421c43 => _0x421c43.toString().padStart(2, 0))
-    .join(':');
-}
+// Funzione utility (non usata nel codice attuale)
+function clockString(ms) {
+  let h = Math.floor(ms / 3600000);
+  let m = Math.floor(ms / 60000) % 60;
+  let s = Math.floor(ms / 1000) % 60;
+  return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':');
+                         }
