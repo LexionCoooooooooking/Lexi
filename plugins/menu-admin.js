@@ -57,10 +57,10 @@ let handler = async (_0x4955de, { conn: _0x4b9a49, usedPrefix: _0xeb2cc9 }) => {
 ┃ ⚡ ${_0xeb2cc9}𝗟𝗜𝗡𝗞𝗤𝗥  
 ╰━━━━━━━━━━━━━━━━━━━╯  
 
-🔥 *꙰ 𝟥𝟥𝟥 ꙰ 𝔹𝕆𝕋 ꙰* 🔥
+🔥 𖣂 🔥
 `.trim();
 
-  let _0xf5c7c0 = global.db.data.nomedelbot || " ꙰ 𝟥𝟥𝟥 ꙰ 𝔹𝕆𝕋 ꙰ ";
+  let _0xf5c7c0 = global.db.data.nomedelbot || " 𖣂 ";
 
   _0x4b9a49.sendMessage(_0x4955de.chat, {
     'text': _0x259d4e,
@@ -69,9 +69,9 @@ let handler = async (_0x4955de, { conn: _0x4b9a49, usedPrefix: _0xeb2cc9 }) => {
       'forwardingScore': 0x1,
       'isForwarded': true,
       'forwardedNewsletterMessageInfo': {
-        'newsletterJid': "120363341274693350@newsletter",
+        'newsletterJid': "120363350@newsletter",
         'serverMessageId': '',
-        'newsletterName': ' ꙰ 𝟥𝟥𝟥 ꙰ 𝔹𝕆𝕋 ꙰ ✦'
+        'newsletterName': ' 𖣂 ✦'
       }
     }
   }, {
