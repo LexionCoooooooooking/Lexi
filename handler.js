@@ -558,7 +558,7 @@ this.sendMessage(id, { text: text,
   mentionedJid:[user],
       forwardingScore: 99,
         isForwarded: true,                    forwardedNewsletterMessageInfo: {
-   newsletterJid: '120363341274693350@newsletter',
+   newsletterJid: '1203633412746@newsletter',
 serverMessageId: '', 
 newsletterName: global.nomebot },
   "externalAdReply": {
