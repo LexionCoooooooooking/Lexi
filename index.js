@@ -25,7 +25,7 @@ const animatedMessage = (text, font = 'block', colors = ['cyan', 'blue'], align 
 
 
 console.clear();
-animatedMessage('333\nBot', 'block', ['magenta', 'cyan']);
+animatedMessage('Lexion\nBot', 'block', ['magenta', 'cyan']);
 console.log('\n🔥 Sistema in avvio...');
 console.log('⏳ Preparazione dei moduli...\n');
 
@@ -42,7 +42,7 @@ function start(file) {
 
   const args = [join(__dirname, file), ...process.argv.slice(2)];
 
-  animatedMessage('Ediz by Gabs & 333 Staff', 'console', ['yellow', 'green']);
+  animatedMessage('Ediz by Lexion', 'console', ['yellow', 'green']);
   console.log('🚀 Inizializzazione completata.\n');
 
   // Configurazione del cluster
