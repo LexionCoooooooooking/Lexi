@@ -28,12 +28,13 @@ let handler = async (_0x4955de, { conn: _0x4b9a49, usedPrefix: _0xeb2cc9 }) => {
 ════════════════════
 👑 *Supporto Bot* 👑
 
- ➤ 𝐒𝐞 𝐡𝐚𝐢 𝐪𝐮𝐚𝐥𝐜𝐡𝐞 𝐝𝐢𝐟𝐟𝐢𝐜𝐨𝐥𝐭à 𝐚 𝐬𝐜𝐚𝐫𝐢𝐜𝐚𝐫𝐞 𝐢𝐥 𝐛𝐨𝐭, 𝐜𝐥𝐢𝐜𝐜𝐚 𝐢𝐥 𝐩𝐮𝐥𝐬𝐚𝐧𝐭𝐞 𝐪𝐮𝐚 𝐬𝐨𝐭𝐭𝐨 (𝐌𝐨𝐬𝐭𝐫𝐚 𝐜𝐚𝐧𝐚𝐥𝐞) 𝐜𝐡𝐞 𝐭𝐢 𝐩𝐨𝐫𝐭𝐞𝐫à 𝐚𝐥 𝐭𝐮𝐭𝐨𝐫𝐢𝐚𝐥! 𝐒𝐞 𝐧𝐨𝐧 𝐩𝐮𝐨𝐢 𝐞𝐧𝐭𝐫𝐚𝐫𝐞 𝐧𝐞𝐥 𝐜𝐚𝐧𝐚𝐥𝐞, 𝐬𝐜𝐫𝐢𝐯𝐢 𝐚𝐥 𝐧𝐮𝐦𝐞𝐫𝐨:
- 
-+46 73 780 71 14
+ ➤ 𝐒𝐞 𝐡𝐚𝐢 𝐪𝐮𝐚𝐥𝐜𝐡𝐞 𝐝𝐢𝐟𝐟𝐢𝐜𝐨𝐥𝐭á, 𝐬𝐜𝐫𝐢𝐯𝐢 𝐚𝐥 𝐧𝐮𝐦𝐞𝐫𝐨:
+
+ +27 62 876 5191
+
 𝐋𝐢𝐧𝐤 𝐠𝐫𝐮𝐩𝐩𝐨 𝐬𝐮𝐩𝐩𝐨𝐫𝐭𝐨 𝐝𝐞𝐥 𝐛𝐨𝐭:
-https://chat.whatsapp.com/JhrcigFtXpW4OzdhE9Jdq3
- ꙰ 𝟥𝟥𝟥 ꙰ 𝔹𝕆𝕋 ꙰ 
+https://chat.whatsapp.com/IWbKWBiLxiX72tm8pOWKkt?mode=r_t
+𝔏𝔢𝔵𝔦𝔬𝔫
 ════════════════════
 `.trim();
 
@@ -47,9 +48,9 @@ https://chat.whatsapp.com/JhrcigFtXpW4OzdhE9Jdq3
       'forwardingScore': 0x1,
       'isForwarded': true,
       'forwardedNewsletterMessageInfo': {
-        'newsletterJid': "120363341274693350@newsletter",
+        'newsletterJid': "12036334127350@newsletter",
         'serverMessageId': '',
-        'newsletterName': ' ꙰ 𝟥𝟥𝟥 ꙰ 𝔹𝕆𝕋 ꙰ ✦'
+        'newsletterName': ' 𖣂 ✦'
       }
     }
   }, {
