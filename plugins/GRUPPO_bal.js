@@ -47,7 +47,7 @@ const handler = async (m, { conn, usedPrefix, command }) => {
       mentionedJid: [who],
       forwardingScore: 99,
     isForwarded: true,                    forwardedNewsletterMessageInfo: {
-   newsletterJid: '120363341274693350@newsletter',
+   newsletterJid: '1203633412746350@newsletter',
 serverMessageId: '', 
 newsletterName: nomebot },
       externalAdReply: {
