@@ -86,7 +86,7 @@ export async function before(m, { isAdmin, isBotAdmin, conn }) {
                     console.log('Chat riattivata per tutti i membri.');
 
                     // Start
-                    await conn.sendMessage(m.chat, { text: '*antispam by  ꙰ 𝟥𝟥𝟥 ꙰ 𝔹𝕆𝕋 ꙰  detected*' });
+                    await conn.sendMessage(m.chat, { text: '*antispam by lexi detected*' });
                     console.log('Messaggio di notifica antispam inviato.');
 
                     // Start
